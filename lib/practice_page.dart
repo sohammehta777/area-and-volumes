@@ -34,7 +34,11 @@ class PracticePage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 _buildButton(
-                    context, 'Area', Colors.orange, '/practiceAreaSelection'),
+                  context,
+                  'Area',
+                  Colors.orange,
+                  '/practiceAreaSelection', // Make sure route matches exactly
+                ),
                 const SizedBox(height: 30),
                 _buildButton(
                     context, 'Volume', Colors.teal, '/practiceAreaSelection'),

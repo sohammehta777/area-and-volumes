@@ -2,17 +2,17 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter/services.dart';
-import 'dart:convert';
-import 'package:logger/logger.dart';
 import 'package:area_and_volume/app_localizations.dart';
 import 'package:area_and_volume/learn_page.dart';
-import 'package:area_and_volume/practice_page.dart'; // Import PracticePage
-import 'package:area_and_volume/learn/area_page.dart'; // Import AreaPage
-import 'package:area_and_volume/learn/volume_page.dart'; // Import VolumePage
+import 'package:area_and_volume/practice_page.dart';
+import 'package:area_and_volume/learn/area_page.dart';
+import 'package:area_and_volume/learn/volume_page.dart';
 import 'package:area_and_volume/practice_area_selection_page.dart';
 import 'package:area_and_volume/practice_questions_page.dart';
-import './introduction_page.dart';
+import 'package:area_and_volume/triangle_questions_page.dart';
+import 'package:area_and_volume/introduction_page.dart';
+import 'package:flutter/services.dart'; // For rootBundle
+import 'dart:convert'; // For json.decode
 
 void main() {
   runApp(const AreaAndVolumeApp());
@@ -26,24 +26,26 @@ class AreaAndVolumeApp extends StatefulWidget {
 }
 
 class AreaAndVolumeAppState extends State<AreaAndVolumeApp> {
-  Locale _locale = const Locale('en');
-  Map<String, String> _localizedStrings = {};
-  final logger = Logger();
+  Locale _locale = const Locale('en'); // Default locale is English
+  Map<String, String> _localizedStrings = {}; // Store localized strings
 
+  @override
+  void initState() {
+    super.initState();
+    _loadLocalizedStrings(_locale); // Load initial locale strings
+  }
+
+  // Load localized strings for the selected locale.
   Future<void> _loadLocalizedStrings(Locale locale) async {
     final String path = 'assets/translations/${locale.languageCode}.json';
     try {
-      logger.i('Attempting to load JSON from path: $path');
       String jsonString = await rootBundle.loadString(path);
       Map<String, dynamic> jsonMap = json.decode(jsonString);
       setState(() {
         _localizedStrings =
             jsonMap.map((key, value) => MapEntry(key, value.toString()));
       });
-      logger.i(
-          'Successfully loaded localized strings for ${locale.languageCode}');
     } catch (e) {
-      logger.e('Error loading localized strings from path: $path');
       setState(() {
         _localizedStrings = {
           'title': 'Error',
@@ -55,12 +57,7 @@ class AreaAndVolumeAppState extends State<AreaAndVolumeApp> {
     }
   }
 
-  @override
-  void initState() {
-    super.initState();
-    _loadLocalizedStrings(_locale);
-  }
-
+  // Toggle between English and Spanish.
   void _changeLanguage() {
     setState(() {
       _locale = _locale.languageCode == 'en'
@@ -75,15 +72,16 @@ class AreaAndVolumeAppState extends State<AreaAndVolumeApp> {
     return MaterialApp(
       locale: _locale,
       localizationsDelegates: const [
-        AppLocalizations.delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+        AppLocalizations.delegate, // Custom localization delegate
+        GlobalMaterialLocalizations.delegate, // Material widget localization
+        GlobalWidgetsLocalizations.delegate, // Widgets localization
+        GlobalCupertinoLocalizations.delegate, // Cupertino widget localization
       ],
       supportedLocales: const [
-        Locale('en', ''),
-        Locale('es', ''),
+        Locale('en', ''), // English
+        Locale('es', ''), // Spanish
       ],
+      initialRoute: '/',
       routes: {
         '/': (context) => IntroductionPage(
               localizedStrings: _localizedStrings,
@@ -91,12 +89,12 @@ class AreaAndVolumeAppState extends State<AreaAndVolumeApp> {
             ),
         '/learn': (context) => const LearnPage(),
         '/practice': (context) => const PracticePage(),
-        '/area': (context) => const AreaPage(), // Route for AreaPage
-        '/volume': (context) => const VolumePage(), // Route for VolumePage
+        '/area': (context) => const AreaPage(),
+        '/volume': (context) => const VolumePage(),
         '/practiceAreaSelection': (context) => const PracticeAreaSelection(),
-        '/practiceRectange': (context) => const PracticeQuestionsPage()
+        '/practiceRectangle': (context) => const PracticeQuestionsPage(),
+        '/triangleQuestions': (context) => const TriangleQuestionsPage(),
       },
-      initialRoute: '/',
     );
   }
 }

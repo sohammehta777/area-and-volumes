@@ -37,3 +37,8 @@ flutter:
     - assets/images/rectangle_q4.png
     - assets/images/rectangle_q5.png
     - assets/images/Q1_correct_answer_image.png
+    - assets/images/triangle_q1.jpg
+    - assets/images/triangle_q2.jpg
+    - assets/images/triangle_q3.jpg
+    - assets/images/triangle_q4.jpg
+    - assets/images/triangle_q5.jpg
