@@ -1,0 +1,44 @@
+name: area_and_volume
+description: "A new Flutter project."
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.19.0
+  logger: ^2.4.0
+  collection: ^1.18.0
+  material_color_utilities: ^0.11.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/translations/en.json
+    - assets/translations/es.json
+    - assets/images/area_example.png
+    - assets/images/area_rectangle.png
+    - assets/images/rectangle_q1.png
+    - assets/images/rectangle_q2.png
+    - assets/images/rectangle_q3.png
+    - assets/images/rectangle_q4.png
+    - assets/images/rectangle_q5.png
+    - assets/images/Q1_correct_answer_image.png
+    - assets/images/triangle_q1.jpg
+    - assets/images/triangle_q2.jpg
+    - assets/images/triangle_q3.jpg
+    - assets/images/triangle_q4.jpg
+    - assets/images/triangle_q5.jpg
