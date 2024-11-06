@@ -11,6 +11,7 @@ class TriangleQuestionsPage extends StatefulWidget {
 class _TriangleQuestionsPageState extends State<TriangleQuestionsPage> {
   int currentIndex = 0;
   String? selectedAnswer;
+  bool _showUnitCardInitially = true;
 
   List<Question> questions = [
     Question(
@@ -49,6 +50,37 @@ class _TriangleQuestionsPageState extends State<TriangleQuestionsPage> {
       correctAnswer: '170 square m',
     ),
   ];
+
+  @override
+  void initState() {
+    super.initState();
+    if (_showUnitCardInitially) {
+      Future.delayed(Duration.zero, () => _showUnitCard());
+      _showUnitCardInitially = false;
+    }
+  }
+
+  void _showUnitCard() {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text("Fun Facts About Area Units", textAlign: TextAlign.center),
+          content: SingleChildScrollView( // Allows for scrolling
+            child: const UnitInfoCard(),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Got it!"),
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -190,13 +222,20 @@ class _TriangleQuestionsPageState extends State<TriangleQuestionsPage> {
       width: double.infinity,
       padding: const EdgeInsets.all(16.0),
       color: Colors.grey[200],
-      child: const Text(
-        "Note: Use the formula for area of a triangle: 1/2 * base * height",
-        style: TextStyle(
-          fontSize: 16,
-          color: Colors.black87,
-        ),
-        textAlign: TextAlign.center,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Text(
+            "Note: Use the formula for area of a triangle: 1/2 * base * height",
+            style: TextStyle(fontSize: 16, color: Colors.black87),
+            textAlign: TextAlign.center,
+          ),
+          IconButton(
+            icon: const Icon(Icons.info_outline),
+            onPressed: _showUnitCard,
+            tooltip: 'Show Units Info',
+          ),
+        ],
       ),
     );
   }
@@ -231,6 +270,40 @@ class _TriangleQuestionsPageState extends State<TriangleQuestionsPage> {
           ],
         );
       },
+    );
+  }
+}
+
+class UnitInfoCard extends StatelessWidget {
+  const UnitInfoCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.center, // Center-aligns the text
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const SizedBox(height: 10),
+        const Text("Units used", 
+          style: TextStyle(fontWeight: FontWeight.bold),
+          textAlign: TextAlign.center, // Center-aligns the title
+        ),
+        const SizedBox(height: 10),
+        const Text("• Inches: for smaller measurements.", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),),
+        const Text("• Feet: for slightly bigger measurements.", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),),
+        const Text("• Yards: for things like playgrounds.", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),),
+        const Text("• Miles: for long distances, like trips.", textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold),),
+        const SizedBox(height: 10),
+        const Text("Areas are measured in square units like square feet, square yards, etc.", textAlign: TextAlign.center),
+        const SizedBox(height: 10),
+        const Text("🌟 A square foot is like a small dance tile that\'s 1 foot by 1 foot—perfect for measuring floors!", textAlign: TextAlign.center),
+        const SizedBox(height: 3),
+        const Text("🌟 A square yard is like a picnic blanket that\'s 1 yard on each side—great for fun outdoor spaces!", textAlign: TextAlign.center),
+        const SizedBox(height: 3),
+        const Text("🌟 A square inch is a tiny square that\'s 1 inch on each side—perfect for little things like stickers!", textAlign: TextAlign.center),
+        const SizedBox(height: 3),
+        const Text("🌟 A square mile is a huge area that\'s 1 mile on each side—think of a giant park or neighborhood!", textAlign: TextAlign.center),
+      ],
     );
   }
 }

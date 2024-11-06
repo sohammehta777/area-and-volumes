@@ -11,6 +11,8 @@ import 'package:area_and_volume/practice_area_selection_page.dart';
 import 'package:area_and_volume/practice_questions_page.dart';
 import 'package:area_and_volume/triangle_questions_page.dart';
 import 'package:area_and_volume/introduction_page.dart';
+import 'package:area_and_volume/play/play_page.dart'; // Import PlayPage
+import 'package:area_and_volume/play/shape_filler_page.dart'; // Import ShapeFillerPage
 import 'package:flutter/services.dart'; // For rootBundle
 import 'dart:convert'; // For json.decode
 
@@ -94,6 +96,8 @@ class AreaAndVolumeAppState extends State<AreaAndVolumeApp> {
         '/practiceAreaSelection': (context) => const PracticeAreaSelection(),
         '/practiceRectangle': (context) => const PracticeQuestionsPage(),
         '/triangleQuestions': (context) => const TriangleQuestionsPage(),
+        '/play': (context) => const PlayPage(), // Route for PlayPage
+        '/shapeFiller': (context) => const ShapeFillerPage(), // Route for game page
       },
     );
   }
