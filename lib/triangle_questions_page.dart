@@ -17,37 +17,42 @@ class _TriangleQuestionsPageState extends State<TriangleQuestionsPage> {
     Question(
       question: "1. Find the area of the triangle given below.",
       imageUrl: "assets/images/triangle_q1.jpg",
-      options: ['78 square m', '80 square m', '76 square m', '75 square m'],
-      correctAnswer: '78 square m',
+      options: ['78 m² (square meter)', '80 m² (square meter)', '76 m² (square meter)', '75 m² (square meter)'],
+      correctAnswer: '78 m² (square meter)',
+      tip: "Tip: m means meter and m² = meter * meter (square meter)",
     ),
     Question(
       question: "2. Find the area of the triangle given below.",
       imageUrl: "assets/images/triangle_q2.jpg",
-      options: ['4 square ft', '5 square ft', '6 square ft', '8 square ft'],
-      correctAnswer: '6 square ft',
+      options: ['4 ft² (square feet)', '5 ft² (square feet)', '6 ft² (square feet)', '8 ft² (square feet)'],
+      correctAnswer: '6 ft² (square feet)',
+      tip: "Tip: ft means feet and ft² = feet * feet (square feet)",
     ),
     Question(
       question: "3. Find the area of the triangle given below.",
       imageUrl: "assets/images/triangle_q3.jpg",
-      options: ['50 square yd', '51 square yd', '52 square yd', '55 square yd'],
-      correctAnswer: '55 square yd',
+      options: ['50 yd² (square yard)', '51 yd² (square yard)', '52 yd² (square yard)', '55 yd² (square yard)'],
+      correctAnswer: '55 yd² (square yard)',
+      tip: "Tip: yd means yard and yd² = yard * yard (square yard)",
     ),
     Question(
       question: "4. Find the area of the triangle given below.",
       imageUrl: "assets/images/triangle_q4.jpg",
       options: [
-        '120 square km',
-        '130 square km',
-        '140 square km',
-        '150 square km'
+        '120 km² (square kilometer)',
+        '130 km² (square kilometer)',
+        '140 km² (square kilometer)',
+        '150 km² (square kilometer)'
       ],
-      correctAnswer: '140 square km',
+      correctAnswer: '140 km² (square kilometer)',
+      tip: "Tip: km means kilometer and 1 km = 1000 m and km² = kilometer * kilometer (square kilometer)",
     ),
     Question(
       question: "5. Find the area of the triangle given below.",
       imageUrl: "assets/images/triangle_q5.jpg",
-      options: ['163 square m', '167 square m', '170 square m', '171 square m'],
-      correctAnswer: '170 square m',
+      options: ['163 m² (square meter)', '167 m² (square meter)', '170 m² (square meter)', '171 m² (square meter)'],
+      correctAnswer: '170 m² (square meter)',
+      tip: "Tip: m means meter and m² = meter * meter (square meter)",
     ),
   ];
 
@@ -128,6 +133,16 @@ class _TriangleQuestionsPageState extends State<TriangleQuestionsPage> {
                           ],
                         ),
                       ),
+                      const SizedBox(height: 40),
+                  Text(
+                    question.tip, // Display the tip
+                    style: const TextStyle(
+                      fontSize: 16,
+                      fontStyle: FontStyle.italic,
+                      color: Colors.black54,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                   ],
                 ),
               ),
@@ -190,7 +205,7 @@ class _TriangleQuestionsPageState extends State<TriangleQuestionsPage> {
 
     return Flexible(
       child: SizedBox(
-        width: 150,
+        width: 270,
         height: 50,
         child: ElevatedButton(
           onPressed: selectedAnswer == null

@@ -19,30 +19,35 @@ class _PracticeQuestionsPageState extends State<PracticeQuestionsPage> {
       imageUrl: "assets/images/rectangle_q1.png",
       options: ['10', '8', '12', '7'],
       correctAnswer: '12',
+      tip: "Tip: m² = meter * meter",
     ),
     Question(
       question: "2. Calculate the area of the rectangle.",
       imageUrl: "assets/images/rectangle_q2.png",
       options: ['12', '13', '24', '17'],
       correctAnswer: '24',
+      tip: "Tip: m² = meter * meter",
     ),
     Question(
       question: "3. Calculate the area of the rectangle.",
       imageUrl: "assets/images/rectangle_q3.png",
       options: ['104', '80', '120', '55.5'],
       correctAnswer: '104',
+      tip: "Tip: m² = meter * meter",
     ),
     Question(
       question: "4. Calculate the area of the rectangle.",
       imageUrl: "assets/images/rectangle_q4.png",
       options: ['84 in', '70 in', '91 in', '130 in'],
       correctAnswer: '91 in',
+      tip: "Tip: m² = meter * meter",
     ),
     Question(
       question: "5. Calculate the area of the rectangle.",
       imageUrl: "assets/images/rectangle_q5.png",
       options: ['30 in', '26.25 in', '24.5 in', '21 in'],
       correctAnswer: '26.25 in',
+      tip: "Tip: m² = meter * meter",
     ),
   ];
 
